@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.massivecraft"
-version = "2.13.7"
+version = "2.13.6"
 
 java {
     toolchain {
