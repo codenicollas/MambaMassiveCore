@@ -112,7 +112,7 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
     {
         if (active == null) active = this.isActive();
         if (root == null) root = this.isRoot();
-        if (active && ! root) throw new IllegalStateException("Â§capenas os comandos raiz podem estar ativos");
+        if (active && ! root) throw new IllegalStateException("§capenas os comandos raiz podem estar ativos");
     }
     
     // -------------------------------------------- //
@@ -595,14 +595,14 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
         // Concat safety.
         if (this.isConcatenating())
         {
-            throw new IllegalStateException("Â§cVocÃª nÃ£o pode adicionar args se um anterior concatenar.");
+            throw new IllegalStateException("§cVocê não pode adicionar args se um anterior concatenar.");
         }
         
         // Req/optional safety.
         int prior = this.getParameters().size()-1;
         if (this.hasParameterForIndex(prior) && this.getParameter(prior).isOptional() && parameter.isRequired())
         {
-            throw new IllegalArgumentException("Â§cVocÃª nÃ£o pode adicionar os args necessÃ¡rios, se um anterior for opcional.");
+            throw new IllegalArgumentException("§cVocê não pode adicionar os args necessários, se um anterior for opcional.");
         }
         
         // If false no change is made.
@@ -880,7 +880,7 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
             }
         }
             
-        return "Â§8*informaÃ§Ã£o indisponÃ­vel*";
+        return "§8*informação indisponível*";
     }
     
     public void setDescPermission(String descPermission) { this.descPermission = descPermission; }
@@ -1067,7 +1067,7 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
         ret = getPerm(permName, true, permClass);
         if (ret != null) return ret;
 
-        throw new RuntimeException("Â§cNÃ£o foi possÃ­vel encontrar uma correspondÃªncia de permissÃµes para: " + permName);
+        throw new RuntimeException("§cNão foi possível encontrar uma correspondência de permissões para: " + permName);
     }
 
     protected static <T extends Enum<T>> T getPerm(String permName, boolean lenient, Class<T> permClass)
@@ -1364,7 +1364,7 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
         }
         
         // Then ourself
-        if (this.getAliases().isEmpty()) throw new IllegalStateException(this.getClass().getSimpleName() + " nÃ£o possui aliases.");
+        if (this.getAliases().isEmpty()) throw new IllegalStateException(this.getClass().getSimpleName() + " não possui aliases.");
         ret.append(this.getAliases().get(0));
         
         // Then args
@@ -1391,8 +1391,8 @@ public class MassiveCommand implements Active, PluginIdentifiableCommand
     public List<String> getTabCompletions(List<String> args, CommandSender sender)
     {
         if (args == null) throw new NullPointerException("args");
-        if (sender == null) throw new IllegalArgumentException("Â§co remetente Ã© nulo");
-        if (args.isEmpty()) throw new IllegalArgumentException("Â§cos args estavam vazios");
+        if (sender == null) throw new IllegalArgumentException("§co remetente é nulo");
+        if (args.isEmpty()) throw new IllegalArgumentException("§cos args estavam vazios");
         
         if (this.isParent())
         {

@@ -49,6 +49,8 @@ tasks {
         relocate("com.mongodb", "com.massivecraft.massivecore.xlib.mongodb")
         relocate("org.bson", "com.massivecraft.massivecore.xlib.bson")
         relocate("org.json", "com.massivecraft.massivecore.xlib.org.json")
+
+        minimize()
     }
 
     withType<JavaCompile>().configureEach {

@@ -65,7 +65,7 @@ public class Couple<A, B> implements Entry<A, B>, Cloneable, Serializable
 	@Override
 	public B setValue(B value)
 	{
-		throw new IllegalStateException("Â§eEsta entrada Ã© um par que Ã© imutÃ¡vel.");
+		throw new IllegalStateException("§eEsta entrada é um par que é imutável.");
 	}
 	
 	// -------------------------------------------- //

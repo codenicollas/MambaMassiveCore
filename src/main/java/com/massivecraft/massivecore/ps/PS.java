@@ -274,8 +274,8 @@ public final class PS implements Serializable, Comparable<PS>
 	public static Float throwIfStrange(Float f, String name)
 	{
 		if (f == null) return null;
-		if (f.isInfinite()) throw new IllegalArgumentException(name + " nï¿½o deve ser Infinito!");
-		if (f.isNaN()) throw new IllegalArgumentException(name + " nï¿½o deve ser NaN!");
+		if (f.isInfinite()) throw new IllegalArgumentException(name + " n�o deve ser Infinito!");
+		if (f.isNaN()) throw new IllegalArgumentException(name + " n�o deve ser NaN!");
 		return f;
 	}
 	

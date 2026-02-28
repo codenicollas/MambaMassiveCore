@@ -128,10 +128,10 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 		String thisName = this.getDescription().getName();
 		String massiveName = MassiveCore.get().getDescription().getName();
 		
-		log(Txt.parse("ï¿½cWARNING: Voce esta usando ï¿½e" + thisName + " <aqua>" + thisVersion + " ï¿½ce ï¿½e" + massiveName + " <aqua>" + massiveVersion + "ï¿½c!"));
-		log(Txt.parse("ï¿½cWARNING: Eles devem estar exatamente na mesma versao para funcionar corretamente!"));
-		log(Txt.parse("ï¿½cWARNING: Lembre-se de sempre atualizar todos os plugins ao mesmo tempo!"));
-		log(Txt.parse("ï¿½cWARNING: Para isso voce deve parar seu servidor e atualizar corretamente."));
+		log(Txt.parse("�cWARNING: Voce esta usando �e" + thisName + " <aqua>" + thisVersion + " �ce �e" + massiveName + " <aqua>" + massiveVersion + "�c!"));
+		log(Txt.parse("�cWARNING: Eles devem estar exatamente na mesma versao para funcionar corretamente!"));
+		log(Txt.parse("�cWARNING: Lembre-se de sempre atualizar todos os plugins ao mesmo tempo!"));
+		log(Txt.parse("�cWARNING: Para isso voce deve parar seu servidor e atualizar corretamente."));
 		
 		// ... and pause for 10 seconds.
 		try
@@ -166,7 +166,7 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 		}
 		
 		long ms = System.currentTimeMillis() - this.enableTime;
-		log(Txt.parse("ï¿½a=== PLUGIN HABILITADO <a> ==="));
+		log(Txt.parse("�a=== PLUGIN HABILITADO <a> ==="));
 	}
 	
 	// -------------------------------------------- //
@@ -185,7 +185,7 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 		// Collections
 		this.deactivate(Coll.getInstances());
 		
-		log("ï¿½cDesabilitado com sucesso.");
+		log("�cDesabilitado com sucesso.");
 	}
 	
 	// -------------------------------------------- //
@@ -203,7 +203,7 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 	
 	public void suicide()
 	{
-		this.log(Txt.parse("ï¿½cAgora eu vou me matar!"));
+		this.log(Txt.parse("�cAgora eu vou me matar!"));
 		Bukkit.getPluginManager().disablePlugin(this);
 	}
 
@@ -242,14 +242,14 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 
 		if (active.isActive() && debug)
 		{
-			log(Txt.parse("ï¿½c%sï¿½c ja esta ativo.", active.getClass().getName()));
+			log(Txt.parse("�c%s�c ja esta ativo.", active.getClass().getName()));
 		}
 
 		active.setActive(this);
 		
 		if (debug)
 		{
-			log(Txt.parse("ï¿½aAtivando ï¿½a%sï¿½a...", active.getClass().getName()));
+			log(Txt.parse("�aAtivando �a%s�a...", active.getClass().getName()));
 		}
 	}
 
@@ -280,17 +280,17 @@ public abstract class MassivePlugin extends JavaPlugin implements Listener, Name
 		if (object instanceof Class<?>)
 		{
 			Class<?> clazz = (Class<?>)object;
-			if ( ! Active.class.isAssignableFrom(clazz)) throw new IllegalArgumentException("ï¿½cClasse nao ativa: " + (clazz == null ? "NULL" : clazz));
+			if ( ! Active.class.isAssignableFrom(clazz)) throw new IllegalArgumentException("�cClasse nao ativa: " + (clazz == null ? "NULL" : clazz));
 
 			Object instance = ReflectionUtil.getSingletonInstance(clazz);
-			if ( ! (instance instanceof Active)) throw new IllegalArgumentException("ï¿½cInstance nao ativa: " + (instance == null ? "NULL" : instance) + " ï¿½cpara o objetoï¿½c: " + (object == null ? "NULL" : object));
+			if ( ! (instance instanceof Active)) throw new IllegalArgumentException("�cInstance nao ativa: " + (instance == null ? "NULL" : instance) + " �cpara o objeto�c: " + (object == null ? "NULL" : object));
 
 			Active active = (Active)instance;
 			return active;
 		}
 
 		// No success
-		throw new IllegalArgumentException("ï¿½cNem Ativo nem Classe: " + object);
+		throw new IllegalArgumentException("�cNem Ativo nem Classe: " + object);
 	}
 	
 	private void deactivate(Collection<? extends Active> actives)

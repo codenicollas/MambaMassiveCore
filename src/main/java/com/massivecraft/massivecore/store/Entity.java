@@ -52,7 +52,7 @@ public class Entity<E extends Entity<E>> extends EntityInternal<E>
 	@SuppressWarnings("unchecked")
 	public String attach(EntityContainer<E> container)
 	{
-		if (!(container instanceof Coll)) throw new IllegalArgumentException(container.getClass().getName() + " nï¿½o ï¿½ uma Coll.");
+		if (!(container instanceof Coll)) throw new IllegalArgumentException(container.getClass().getName() + " n�o � uma Coll.");
 		return container.attach((E) this);
 	}
 	

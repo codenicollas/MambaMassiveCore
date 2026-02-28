@@ -117,7 +117,7 @@ public class PriorityLines implements Prioritized, Comparable<PriorityLines> {
 		if (messageItem instanceof String)
 			return Mson.fromParsedMessage((String) messageItem);
 		throw new IllegalArgumentException(
-				String.format("Â§cA messageItem nÃ£o Ã© um Mson ou uma String, %s", messageItem));
+				String.format("§cA messageItem não é um Mson ou uma String, %s", messageItem));
 	}
 
 }

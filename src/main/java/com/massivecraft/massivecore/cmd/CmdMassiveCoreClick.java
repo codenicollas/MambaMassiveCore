@@ -22,7 +22,7 @@ public class CmdMassiveCoreClick extends MassiveCoreCommand {
 
 	public CmdMassiveCoreClick() {
 
-		this.setDesc("Â§6 click Â§8-Â§7 Click para executar um comando.");
+		this.setDesc("§6 click §8-§7 Click para executar um comando.");
 
 		// Parameters
 		this.addParameter(null, TypeStringCommand.get(), "command", "none", true).setDesc("o comando para executar");

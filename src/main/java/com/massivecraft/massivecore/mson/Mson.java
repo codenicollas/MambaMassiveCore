@@ -468,7 +468,7 @@ public class Mson implements Serializable
 		this.text = Objects.requireNonNull(text);
 		
 		// Color
-		if (color != null && ! color.isColor()) throw new IllegalArgumentException(color.name() + " nï¿½o ï¿½ uma cor.");
+		if (color != null && ! color.isColor()) throw new IllegalArgumentException(color.name() + " n�o � uma cor.");
 		this.color = color;
 		
 		// Format
@@ -488,11 +488,11 @@ public class Mson implements Serializable
 		
 		type = MsonEventType.CLICK;
 		event = this.getEvent(type);
-		if (event != null && event.getType() != type) throw new IllegalArgumentException(event.getAction().name() + " nï¿½o ï¿½ um tipo de " + type);
+		if (event != null && event.getType() != type) throw new IllegalArgumentException(event.getAction().name() + " n�o � um tipo de " + type);
 		
 		type = MsonEventType.HOVER;
 		event = this.getEvent(type);
-		if (event != null && event.getType() != type) throw new IllegalArgumentException(event.getAction().name() + " nï¿½o ï¿½ um tipo de " + type);
+		if (event != null && event.getType() != type) throw new IllegalArgumentException(event.getAction().name() + " n�o � um tipo de " + type);
 				
 		
 		// Insertionstring
