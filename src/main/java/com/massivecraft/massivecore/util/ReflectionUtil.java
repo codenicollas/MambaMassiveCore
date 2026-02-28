@@ -46,8 +46,6 @@ public class ReflectionUtil {
     static {
         int strategy = STRATEGY_NONE;
 
-        // ââ EstratÃ©gia 1: Java 8-11
-        // ââââââââââââââââââââââââââââââââââââââââââ
         try {
             Field f = Field.class.getDeclaredField("modifiers");
             f.setAccessible(true);
@@ -57,8 +55,6 @@ public class ReflectionUtil {
         } catch (Throwable ignored) {
         }
 
-        // ââ EstratÃ©gia 2: Java 12-16 (IMPL_LOOKUP)
-        // âââââââââââââââââââââââââââ
         if (strategy == STRATEGY_NONE) {
             try {
                 Field lookupField = java.lang.invoke.MethodHandles.Lookup.class
@@ -86,8 +82,8 @@ public class ReflectionUtil {
         }
 
         if (strategy == STRATEGY_NONE) {
-            System.err.println("[ReflectionUtil] AVISO: Nenhuma estratÃ©gia de remoÃ§Ã£o " +
-                    "de 'final' disponÃ­vel neste JVM. Campos final permanecerÃ£o imutÃ¡veis.");
+            System.err.println("[ReflectionUtil] AVISO: Nenhuma estratégia de remoção " +
+                    "de 'final' disponível neste JVM. Campos final permanecerão imutáveis.");
         }
 
         FINAL_REMOVAL_STRATEGY = strategy;
@@ -104,7 +100,7 @@ public class ReflectionUtil {
         try {
             field.setAccessible(true);
         } catch (Throwable e) {
-            System.err.println("[ReflectionUtil] NÃ£o foi possÃ­vel chamar setAccessible " +
+            System.err.println("[ReflectionUtil] Não foi possível chamar setAccessible " +
                     "no campo '" + field.getName() + "': " + e.getMessage());
         }
 
@@ -472,22 +468,25 @@ public class ReflectionUtil {
     // -------------------------------------------- //
 
     public static RuntimeException asRuntimeException(Throwable t) {
+        if (t == null)
+            return new IllegalStateException("(causa desconhecida - excecao nula)");
         if (t instanceof RuntimeException)
             return (RuntimeException) t;
-        if (t instanceof InvocationTargetException)
-            return asRuntimeException(((InvocationTargetException) t).getCause());
-        return new IllegalStateException(t.getClass().getSimpleName() + ": " + t.getMessage());
+        if (t instanceof InvocationTargetException) {
+            Throwable cause = ((InvocationTargetException) t).getCause();
+            return asRuntimeException(cause != null ? cause : t);
+        }
+        if (t instanceof ExceptionInInitializerError) {
+            Throwable cause = ((ExceptionInInitializerError) t).getCause();
+            return asRuntimeException(cause != null ? cause : t);
+        }
+        return new IllegalStateException(t.getClass().getName() + ": " + t.getMessage(), t);
     }
 
     // -------------------------------------------- //
     // BUKKIT VERSION
     // -------------------------------------------- //
 
-    /**
-     * Em versÃµes modernas do Paper/Spigot (1.20.5+) o pacote do servidor
-     * nÃ£o segue mais o padrÃ£o "org.bukkit.craftbukkit.v1_XX_RX", entÃ£o
-     * fazemos a extraÃ§Ã£o de forma defensiva.
-     */
     private static final String versionRaw;
     private static final int versionMajor;
     private static final int versionMinor;
@@ -508,13 +507,14 @@ public class ReflectionUtil {
             }
 
             if (raw == null) {
-                raw = Bukkit.getBukkitVersion().split("-")[0];
+                raw = Bukkit.getBukkitVersion().split("-")[0]; // "1.21.1"
                 String[] nums = raw.split("\\.");
                 major = Integer.parseInt(nums[0]);
                 minor = nums.length > 1 ? Integer.parseInt(nums[1]) : 0;
                 release = nums.length > 2 ? Integer.parseInt(nums[2]) : 0;
                 raw = "v" + major + "_" + minor + "_R" + release;
             } else {
+                // "v1_21_R1" → ["v1", "21", "R1"]
                 String[] parts = raw.split("_");
                 major = Integer.parseInt(parts[0].substring(1));
                 minor = Integer.parseInt(parts[1]);
@@ -525,7 +525,7 @@ public class ReflectionUtil {
             major = 0;
             minor = 0;
             release = 0;
-            System.err.println("[ReflectionUtil] NÃ£o foi possÃ­vel detectar a versÃ£o do Bukkit: "
+            System.err.println("[ReflectionUtil] Não foi possível detectar a versão do Bukkit: "
                     + e.getMessage());
         }
 
@@ -551,6 +551,10 @@ public class ReflectionUtil {
         return versionRelease;
     }
 
+    /**
+     * @deprecated Use {@link #getVersionMajor()}/{@link #getVersionMinor()}
+     *             diretamente.
+     */
     @Deprecated
     public static String getVersionRawPart(int index) {
         return getVersionRaw().split("_")[index];
