@@ -1,16 +1,7 @@
 package com.massivecraft.massivecore.util;
 
-import com.massivecraft.massivecore.collections.MassiveList;
-import com.massivecraft.massivecore.comparator.ComparatorNaturalOrder;
-import com.massivecraft.massivecore.predicate.Predicate;
-import com.massivecraft.massivecore.predicate.PredicateAnd;
-import com.google.common.reflect.ClassPath;
-import com.google.common.reflect.ClassPath.ClassInfo;
-import org.bukkit.Bukkit;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -20,35 +11,84 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+
+import com.google.common.reflect.ClassPath;
+import com.google.common.reflect.ClassPath.ClassInfo;
+import com.massivecraft.massivecore.collections.MassiveList;
+import com.massivecraft.massivecore.comparator.ComparatorNaturalOrder;
+import com.massivecraft.massivecore.predicate.Predicate;
+import com.massivecraft.massivecore.predicate.PredicateAnd;
+
+import sun.misc.Unsafe;
+
 public class ReflectionUtil {
+
     // -------------------------------------------- //
     // CONSTANTS
     // -------------------------------------------- //
 
-    private static Field FIELD_DOT_MODIFIERS;
-    private static MethodHandle MODIFIERS_HANDLE;
+    private static final int STRATEGY_DIRECT = 1;
+    private static final int STRATEGY_HANDLE = 2;
+    private static final int STRATEGY_UNSAFE = 3;
+    private static final int STRATEGY_NONE = 0;
+
+    private static final int FINAL_REMOVAL_STRATEGY;
+
+    private static Field fieldDotModifiers = null;
+    private static java.lang.invoke.MethodHandle modifiersHandle = null;
+    private static Unsafe theUnsafe = null;
+    private static long modifiersOffset = -1L;
 
     static {
-        // (Java 8-11)
+        int strategy = STRATEGY_NONE;
+
+        // ── Estratégia 1: Java 8-11 ──────────────────────────────────────────
         try {
-            FIELD_DOT_MODIFIERS = Field.class.getDeclaredField("modifiers");
-            FIELD_DOT_MODIFIERS.setAccessible(true);
-        } catch (Throwable e) {
-            FIELD_DOT_MODIFIERS = null;
-            // (Java 12+)
+            Field f = Field.class.getDeclaredField("modifiers");
+            f.setAccessible(true);
+            f.getInt(f);
+            fieldDotModifiers = f;
+            strategy = STRATEGY_DIRECT;
+        } catch (Throwable ignored) {
+        }
+
+        // ── Estratégia 2: Java 12-16 (IMPL_LOOKUP) ───────────────────────────
+        if (strategy == STRATEGY_NONE) {
             try {
-                Field lookupField = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
+                Field lookupField = java.lang.invoke.MethodHandles.Lookup.class
+                        .getDeclaredField("IMPL_LOOKUP");
                 lookupField.setAccessible(true);
-                MethodHandles.Lookup lookup = (MethodHandles.Lookup) lookupField.get(null);
-                MODIFIERS_HANDLE = lookup.findSetter(Field.class, "modifiers", int.class);
-            } catch (Throwable ex) {
-                MODIFIERS_HANDLE = null;
+                java.lang.invoke.MethodHandles.Lookup lookup = (java.lang.invoke.MethodHandles.Lookup) lookupField
+                        .get(null);
+                modifiersHandle = lookup.findSetter(Field.class, "modifiers", int.class);
+                strategy = STRATEGY_HANDLE;
+            } catch (Throwable ignored) {
             }
         }
+
+        if (strategy == STRATEGY_NONE) {
+            try {
+                Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+                unsafeField.setAccessible(true);
+                theUnsafe = (Unsafe) unsafeField.get(null);
+
+                Field modField = Field.class.getDeclaredField("modifiers");
+                modifiersOffset = theUnsafe.objectFieldOffset(modField);
+                strategy = STRATEGY_UNSAFE;
+            } catch (Throwable ignored) {
+            }
+        }
+
+        if (strategy == STRATEGY_NONE) {
+            System.err.println("[ReflectionUtil] AVISO: Nenhuma estratégia de remoção " +
+                    "de 'final' disponível neste JVM. Campos final permanecerão imutáveis.");
+        }
+
+        FINAL_REMOVAL_STRATEGY = strategy;
     }
 
     private static final Class<?>[] EMPTY_ARRAY_OF_CLASS = {};
@@ -60,25 +100,36 @@ public class ReflectionUtil {
 
     public static void makeAccessible(Field field) {
         try {
-            if (!field.isAccessible()) {
-                field.setAccessible(true);
-            }
+            field.setAccessible(true);
+        } catch (Throwable e) {
+            System.err.println("[ReflectionUtil] Não foi possível chamar setAccessible " +
+                    "no campo '" + field.getName() + "': " + e.getMessage());
+        }
 
-            if (Modifier.isFinal(field.getModifiers())) {
-                if (FIELD_DOT_MODIFIERS != null) {
-                    // (Java 8-11)
-                    FIELD_DOT_MODIFIERS.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                } else if (MODIFIERS_HANDLE != null) {
-                    // (Java 12+)
-                    try {
-                        MODIFIERS_HANDLE.invokeExact(field, field.getModifiers() & ~Modifier.FINAL);
-                    } catch (Throwable e) {
-                        e.printStackTrace();
-                    }
-                }
+        if (!Modifier.isFinal(field.getModifiers()))
+            return;
+
+        try {
+            switch (FINAL_REMOVAL_STRATEGY) {
+                case STRATEGY_DIRECT:
+                    fieldDotModifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                    break;
+
+                case STRATEGY_HANDLE:
+                    modifiersHandle.invokeExact(field, field.getModifiers() & ~Modifier.FINAL);
+                    break;
+
+                case STRATEGY_UNSAFE:
+                    theUnsafe.putInt(field, modifiersOffset,
+                            field.getModifiers() & ~Modifier.FINAL);
+                    break;
+
+                default:
+                    break;
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+            System.err.println("[ReflectionUtil] Falha ao remover modificador 'final' " +
+                    "do campo '" + field.getName() + "': " + e.getMessage());
         }
     }
 
@@ -316,7 +367,6 @@ public class ReflectionUtil {
                 fieldNames.add(field.getName());
             }
         }
-
         for (String fieldName : fieldNames) {
             transferField(clazz, from, to, fieldName);
         }
@@ -341,7 +391,8 @@ public class ReflectionUtil {
         return ret;
     }
 
-    public static Class<?> getSuperclassPredicate(Class<?> clazz, boolean includeSelf, Predicate<Class<?>> predicate) {
+    public static Class<?> getSuperclassPredicate(Class<?> clazz, boolean includeSelf,
+            Predicate<Class<?>> predicate) {
         for (Class<?> superClazz : getSuperclasses(clazz, includeSelf)) {
             if (predicate.apply(superClazz))
                 return superClazz;
@@ -349,29 +400,25 @@ public class ReflectionUtil {
         return null;
     }
 
-    public static Class<?> getSuperclassDeclaringMethod(Class<?> clazz, boolean includeSelf, final String methodName) {
-        return getSuperclassPredicate(clazz, includeSelf, new Predicate<Class<?>>() {
-            @Override
-            public boolean apply(Class<?> clazz) {
-                for (Method method : clazz.getDeclaredMethods()) {
-                    if (method.getName().equals(methodName))
-                        return true;
-                }
-                return false;
+    public static Class<?> getSuperclassDeclaringMethod(Class<?> clazz, boolean includeSelf,
+            final String methodName) {
+        return getSuperclassPredicate(clazz, includeSelf, superClazz -> {
+            for (Method method : superClazz.getDeclaredMethods()) {
+                if (method.getName().equals(methodName))
+                    return true;
             }
+            return false;
         });
     }
 
-    public static Class<?> getSuperclassDeclaringField(Class<?> clazz, boolean includeSelf, final String fieldName) {
-        return getSuperclassPredicate(clazz, includeSelf, new Predicate<Class<?>>() {
-            @Override
-            public boolean apply(Class<?> clazz) {
-                for (Field field : clazz.getDeclaredFields()) {
-                    if (field.getName().equals(fieldName))
-                        return true;
-                }
-                return false;
+    public static Class<?> getSuperclassDeclaringField(Class<?> clazz, boolean includeSelf,
+            final String fieldName) {
+        return getSuperclassPredicate(clazz, includeSelf, superClazz -> {
+            for (Field field : superClazz.getDeclaredFields()) {
+                if (field.getName().equals(fieldName))
+                    return true;
             }
+            return false;
         });
     }
 
@@ -380,15 +427,16 @@ public class ReflectionUtil {
     // -------------------------------------------- //
 
     @SuppressWarnings("unchecked")
-    public static List<Class<?>> getPackageClasses(String packageName, ClassLoader classLoader, boolean recursive,
-            Predicate<Class<?>>... predicates) {
+    public static List<Class<?>> getPackageClasses(String packageName, ClassLoader classLoader,
+            boolean recursive, Predicate<Class<?>>... predicates) {
         List<Class<?>> ret = new MassiveList<>();
 
         try {
             ClassPath classPath = ClassPath.from(classLoader);
             Predicate<Class<?>> predicateCombined = PredicateAnd.get(predicates);
 
-            Collection<ClassInfo> classInfos = recursive ? classPath.getTopLevelClassesRecursive(packageName)
+            Collection<ClassInfo> classInfos = recursive
+                    ? classPath.getTopLevelClassesRecursive(packageName)
                     : classPath.getTopLevelClasses(packageName);
 
             for (ClassInfo classInfo : classInfos) {
@@ -412,12 +460,7 @@ public class ReflectionUtil {
             throw new RuntimeException(ex);
         }
 
-        Collections.sort(ret, new Comparator<Class<?>>() {
-            @Override
-            public int compare(Class<?> class1, Class<?> class2) {
-                return ComparatorNaturalOrder.get().compare(class1.getName(), class2.getName());
-            }
-        });
+        ret.sort(Comparator.comparing(Class::getName, ComparatorNaturalOrder.get()));
 
         return ret;
     }
@@ -438,34 +481,77 @@ public class ReflectionUtil {
     // BUKKIT VERSION
     // -------------------------------------------- //
 
-    private static String versionRaw = Bukkit.getServer().getClass().getPackage().getName().substring(23);
+    /**
+     * Em versões modernas do Paper/Spigot (1.20.5+) o pacote do servidor
+     * não segue mais o padrão "org.bukkit.craftbukkit.v1_XX_RX", então
+     * fazemos a extração de forma defensiva.
+     */
+    private static final String versionRaw;
+    private static final int versionMajor;
+    private static final int versionMinor;
+    private static final int versionRelease;
+
+    static {
+        String pkg = Bukkit.getServer().getClass().getPackage().getName();
+        String raw;
+        int major = 0, minor = 0, release = 0;
+        try {
+            String[] pkgParts = pkg.split("\\.");
+            raw = null;
+            for (String part : pkgParts) {
+                if (part.startsWith("v") && part.contains("_")) {
+                    raw = part;
+                    break;
+                }
+            }
+
+            if (raw == null) {
+                raw = Bukkit.getBukkitVersion().split("-")[0];
+                String[] nums = raw.split("\\.");
+                major = Integer.parseInt(nums[0]);
+                minor = nums.length > 1 ? Integer.parseInt(nums[1]) : 0;
+                release = nums.length > 2 ? Integer.parseInt(nums[2]) : 0;
+                raw = "v" + major + "_" + minor + "_R" + release;
+            } else {
+                String[] parts = raw.split("_");
+                major = Integer.parseInt(parts[0].substring(1));
+                minor = Integer.parseInt(parts[1]);
+                release = Integer.parseInt(parts[2].substring(1));
+            }
+        } catch (Throwable e) {
+            raw = "v0_0_R0";
+            major = 0;
+            minor = 0;
+            release = 0;
+            System.err.println("[ReflectionUtil] Não foi possível detectar a versão do Bukkit: "
+                    + e.getMessage());
+        }
+
+        versionRaw = raw;
+        versionMajor = major;
+        versionMinor = minor;
+        versionRelease = release;
+    }
 
     public static String getVersionRaw() {
         return versionRaw;
     }
 
-    public static String getVersionRawPart(int index) {
-        String versionRaw = getVersionRaw();
-        String[] parts = versionRaw.split("_");
-        return parts[index];
-    }
-
-    private static int versionMajor = Integer.valueOf(getVersionRawPart(0).substring(1));
-
     public static int getVersionMajor() {
         return versionMajor;
     }
-
-    private static int versionMinor = Integer.valueOf(getVersionRawPart(1));
 
     public static int getVersionMinor() {
         return versionMinor;
     }
 
-    private static int versionRelease = Integer.valueOf(getVersionRawPart(2).substring(1));
-
     public static int getVersionRelease() {
         return versionRelease;
+    }
+
+    @Deprecated
+    public static String getVersionRawPart(int index) {
+        return getVersionRaw().split("_")[index];
     }
 
     // -------------------------------------------- //

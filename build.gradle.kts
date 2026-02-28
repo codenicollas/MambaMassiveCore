@@ -1,10 +1,6 @@
-import org.gradle.api.tasks.compile.JavaCompile
-import org.gradle.jvm.toolchain.JavaLanguageVersion
-
 plugins {
-    java
-
-    id("com.gradleup.shadow") version "9.1.0"
+    id("java")
+    id("com.gradleup.shadow") version "9.3.0"
 }
 
 group = "com.massivecraft"
@@ -23,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    compileOnly(fileTree("libs") { include("*.jar") })
 
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
 
@@ -34,20 +30,19 @@ dependencies {
 }
 
 tasks {
-    processResources {
-        expand(project.properties)
+    build {
+        dependsOn(shadowJar)
     }
 
-    withType<JavaCompile>().configureEach {
-        options.encoding = "UTF-8"
-        options.release.set(8)
+    processResources {
+        filesMatching("plugin.yml") {
+            expand("version" to version)
+        }
     }
 
     shadowJar {
         archiveBaseName.set("MassiveCore")
         archiveClassifier.set("")
-
-        minimize()
 
         relocate("com.google.gson", "com.massivecraft.massivecore.xlib.gson")
         relocate("com.google.common", "com.massivecraft.massivecore.xlib.guava")
@@ -56,7 +51,8 @@ tasks {
         relocate("org.json", "com.massivecraft.massivecore.xlib.org.json")
     }
 
-    build {
-        dependsOn(shadowJar)
+    withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+        options.release.set(8)
     }
 }
