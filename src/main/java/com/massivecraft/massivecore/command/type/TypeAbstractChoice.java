@@ -107,16 +107,16 @@ public abstract class TypeAbstractChoice<T> extends TypeAbstract<T> implements A
 	// OVERRIDE: TYPE
 	// -------------------------------------------- //
 	
-	protected static final String MESSAGE_MATCH_NOTHING = Txt.parse("§cArgumento(s) inválido \"§c%s\".");
-	protected static final String MESSAGE_MATCH_AMBIGUOUS = Txt.parse("§cArgumento(s) inválido \"§c%s§c\".");
-	protected static final String MESSAGE_AVAILABLE_EMPTY = Txt.parse("§eNota: Não há nenhum(a) %s disponível.");
+	protected static final String MESSAGE_MATCH_NOTHING = Txt.parse("Â§cArgumento(s) invÃ¡lido \"Â§c%s\".");
+	protected static final String MESSAGE_MATCH_AMBIGUOUS = Txt.parse("Â§cArgumento(s) invÃ¡lido \"Â§c%sÂ§c\".");
+	protected static final String MESSAGE_AVAILABLE_EMPTY = Txt.parse("Â§eNota: NÃ£o hÃ¡ nenhum(a) %s disponÃ­vel.");
 	
 	protected static final String MESSAGE_COLON_AMBIGUOUS = Txt.parse("<aqua>Ambigous<silver>: ");
 	protected static final String MESSAGE_COLON_ALL = Txt.parse("<aqua>All<silver>: ");
 	protected static final String MESSAGE_COLON_SIMILAR = Txt.parse("<aqua>Similar<silver>: ");
 	
-	protected static final String MESSAGE_SUGGESTIONS_EMPTY = Txt.parse("§eNenhuma sugestão disponível.");
-	protected static final String MESSAGE_SUGGESTIONS_MUCH = Txt.parse("§eMais de %d sugestões foram encontradas.");
+	protected static final String MESSAGE_SUGGESTIONS_EMPTY = Txt.parse("Â§eNenhuma sugestÃ£o disponÃ­vel.");
+	protected static final String MESSAGE_SUGGESTIONS_MUCH = Txt.parse("Â§eMais de %d sugestÃµes foram encontradas.");
 	
 	
 	@Override

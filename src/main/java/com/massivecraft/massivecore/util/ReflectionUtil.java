@@ -46,7 +46,8 @@ public class ReflectionUtil {
     static {
         int strategy = STRATEGY_NONE;
 
-        // ── Estratégia 1: Java 8-11 ──────────────────────────────────────────
+        // ââ EstratÃ©gia 1: Java 8-11
+        // ââââââââââââââââââââââââââââââââââââââââââ
         try {
             Field f = Field.class.getDeclaredField("modifiers");
             f.setAccessible(true);
@@ -56,7 +57,8 @@ public class ReflectionUtil {
         } catch (Throwable ignored) {
         }
 
-        // ── Estratégia 2: Java 12-16 (IMPL_LOOKUP) ───────────────────────────
+        // ââ EstratÃ©gia 2: Java 12-16 (IMPL_LOOKUP)
+        // âââââââââââââââââââââââââââ
         if (strategy == STRATEGY_NONE) {
             try {
                 Field lookupField = java.lang.invoke.MethodHandles.Lookup.class
@@ -84,8 +86,8 @@ public class ReflectionUtil {
         }
 
         if (strategy == STRATEGY_NONE) {
-            System.err.println("[ReflectionUtil] AVISO: Nenhuma estratégia de remoção " +
-                    "de 'final' disponível neste JVM. Campos final permanecerão imutáveis.");
+            System.err.println("[ReflectionUtil] AVISO: Nenhuma estratÃ©gia de remoÃ§Ã£o " +
+                    "de 'final' disponÃ­vel neste JVM. Campos final permanecerÃ£o imutÃ¡veis.");
         }
 
         FINAL_REMOVAL_STRATEGY = strategy;
@@ -102,7 +104,7 @@ public class ReflectionUtil {
         try {
             field.setAccessible(true);
         } catch (Throwable e) {
-            System.err.println("[ReflectionUtil] Não foi possível chamar setAccessible " +
+            System.err.println("[ReflectionUtil] NÃ£o foi possÃ­vel chamar setAccessible " +
                     "no campo '" + field.getName() + "': " + e.getMessage());
         }
 
@@ -482,9 +484,9 @@ public class ReflectionUtil {
     // -------------------------------------------- //
 
     /**
-     * Em versões modernas do Paper/Spigot (1.20.5+) o pacote do servidor
-     * não segue mais o padrão "org.bukkit.craftbukkit.v1_XX_RX", então
-     * fazemos a extração de forma defensiva.
+     * Em versÃµes modernas do Paper/Spigot (1.20.5+) o pacote do servidor
+     * nÃ£o segue mais o padrÃ£o "org.bukkit.craftbukkit.v1_XX_RX", entÃ£o
+     * fazemos a extraÃ§Ã£o de forma defensiva.
      */
     private static final String versionRaw;
     private static final int versionMajor;
@@ -523,7 +525,7 @@ public class ReflectionUtil {
             major = 0;
             minor = 0;
             release = 0;
-            System.err.println("[ReflectionUtil] Não foi possível detectar a versão do Bukkit: "
+            System.err.println("[ReflectionUtil] NÃ£o foi possÃ­vel detectar a versÃ£o do Bukkit: "
                     + e.getMessage());
         }
 

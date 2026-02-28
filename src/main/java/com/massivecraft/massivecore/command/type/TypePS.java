@@ -218,7 +218,7 @@ public class TypePS extends TypeAbstract<PS>
 	
 		if ( ! something)
 		{
-			throw new MassiveException().addMsg("§cEstado físico inválido \"§c%\"§c.", arg);
+			throw new MassiveException().addMsg("Â§cEstado fÃ­sico invÃ¡lido \"Â§c%\"Â§c.", arg);
 		}
 		
 		return ret.build();

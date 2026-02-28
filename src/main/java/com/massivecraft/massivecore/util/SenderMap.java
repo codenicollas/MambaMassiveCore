@@ -182,7 +182,7 @@ public final class SenderMap
 			case LOCAL : return LOCAL_PRESENCES;
 			case ONLINE : return ONLINE_PRESENCES;
 			case OFFLINE : return OFFLINE_PRESENCES;
-			case ANY : throw new UnsupportedOperationException("SenderPresence.ANY n�o � suportado. Voc� deve saber se est� online ou offline.");
+			case ANY : throw new UnsupportedOperationException("SenderPresence.ANY nï¿½o ï¿½ suportado. Vocï¿½ deve saber se estï¿½ online ou offline.");
 		}
 		throw new UnsupportedOperationException("Unknown SenderPresence: " + null);
 	}

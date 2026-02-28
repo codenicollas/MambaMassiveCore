@@ -101,7 +101,7 @@ public class CommandEditAbstract<O, V> extends MassiveCommand
 		// Editable
 		if ( ! this.getProperty().isEditable())
 		{
-			msg("§cA propriedade '§c%s§c' nao e editavel.", this.getProperty().getDisplayName());
+			msg("Â§cA propriedade 'Â§c%sÂ§c' nao e editavel.", this.getProperty().getDisplayName());
 			return;
 		}
 		
@@ -337,7 +337,7 @@ public class CommandEditAbstract<O, V> extends MassiveCommand
 	public void requireNullable() throws MassiveException
 	{
 		if (this.getProperty().isNullable()) return;
-		throw new MassiveException().addMsg("§c%s§c nao pode ser nulo.", this.getPropertyName());
+		throw new MassiveException().addMsg("Â§c%sÂ§c nao pode ser nulo.", this.getPropertyName());
 	}
 	
 }

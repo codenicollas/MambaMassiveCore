@@ -19,7 +19,7 @@ public class TypeByte extends TypeAbstractNumber<Byte>
 	@Override
 	public String getName()
 	{
-		return "número pequeno";
+		return "nÃºmero pequeno";
 	}
 	
 	@Override

@@ -65,7 +65,7 @@ public class TypeColor extends TypeAbstract<Color>
 		ret = readInnerDyeColor(arg);
 		if (ret != null) return ret;
 		
-		throw new MassiveException().addMsg("§cNenhuma cor corresponde a \"%s§c\".", arg);
+		throw new MassiveException().addMsg("Â§cNenhuma cor corresponde a \"%sÂ§c\".", arg);
 	}
 	
 	public Color readInnerRgb(String arg) throws MassiveException
@@ -83,7 +83,7 @@ public class TypeColor extends TypeAbstract<Color>
 	private int readInnerRgbNumber(String arg) throws MassiveException
 	{
 		int ret = TypeInteger.get().read(arg);
-		if (ret > 255 || ret < 0) throw new MassiveException().addMsg("§cO número RGB deve estar entre 0 e 255.");
+		if (ret > 255 || ret < 0) throw new MassiveException().addMsg("Â§cO nÃºmero RGB deve estar entre 0 e 255.");
 		return ret;
 	}
 	
@@ -101,7 +101,7 @@ public class TypeColor extends TypeAbstract<Color>
 		// Length check 
 		if (arg.length() != 6)
 		{
-			if (verbose) throw new MassiveException().addMsg("§cO número deve ter 6 hexadecimais..");
+			if (verbose) throw new MassiveException().addMsg("Â§cO nÃºmero deve ter 6 hexadecimais..");
 			return null;
 		}
 		
@@ -115,7 +115,7 @@ public class TypeColor extends TypeAbstract<Color>
 		}
 		catch (IllegalArgumentException e)
 		{
-			if (verbose) throw new MassiveException().addMsg("§c\"%s§c\" não é um valor hexadecimal.", arg);
+			if (verbose) throw new MassiveException().addMsg("Â§c\"%sÂ§c\" nÃ£o Ã© um valor hexadecimal.", arg);
 			return null;
 		}
 	}

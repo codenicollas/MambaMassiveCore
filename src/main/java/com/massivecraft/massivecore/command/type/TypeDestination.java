@@ -38,7 +38,7 @@ public class TypeDestination extends TypeAbstract<Destination>
 		if (exception != null) throw exception;
 		
 		Destination ret = event.getDestination();
-		if (ret == null) throw new MassiveException().addMsg("§cDestino desconhecido \"§c%s\"§c.", arg);
+		if (ret == null) throw new MassiveException().addMsg("Â§cDestino desconhecido \"Â§c%s\"Â§c.", arg);
 		
 		// Throw exeption if ps is null.
 		ret.getPs(sender);

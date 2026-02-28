@@ -12,7 +12,7 @@ public class MassiveCommandVersion extends MassiveCommand
 	// CONSTANTS
 	// -------------------------------------------- //
 	
-	public static final String NOT_SPECIFIED = Txt.parse("<em><silver>não especificada.");
+	public static final String NOT_SPECIFIED = Txt.parse("<em><silver>nÃ£o especificada.");
 	
 	// -------------------------------------------- //
 	// FIELDS
@@ -29,9 +29,9 @@ public class MassiveCommandVersion extends MassiveCommand
 	{
 		this.plugin = plugin;
 		
-		this.setAliases("versão", "v", "versao", "version");
+		this.setAliases("versÃ£o", "v", "versao", "version");
 		
-		this.setDesc("§6 v,versao §8-§7 Mostra a versão do plugin.");
+		this.setDesc("Â§6 v,versao Â§8-Â§7 Mostra a versÃ£o do plugin.");
 		
 		// Priority
 		this.setPriority(-1);
@@ -66,20 +66,20 @@ public class MassiveCommandVersion extends MassiveCommand
 		
 		this.sendTitle();
 		this.sendEntry("nome", name);
-		this.sendEntry("versão", version);
+		this.sendEntry("versÃ£o", version);
 		this.sendEntry("website", website);
 		this.sendEntry("autores", authors);
-		this.sendEntry("descrição", description);
+		this.sendEntry("descriÃ§Ã£o", description);
 	}
 	
 	public void sendTitle()
 	{
-		message(Txt.titleize("§eInformações do plugin"));
+		message(Txt.titleize("Â§eInformaÃ§Ãµes do plugin"));
 	}
 	
 	public void sendEntry(String key, String value)
 	{
-		message(Txt.parse("§6%s: §e%s", Txt.upperCaseFirst(key), value == null ? NOT_SPECIFIED : value));
+		message(Txt.parse("Â§6%s: Â§e%s", Txt.upperCaseFirst(key), value == null ? NOT_SPECIFIED : value));
 	}
 
 }

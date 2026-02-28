@@ -21,7 +21,7 @@ public abstract class TypeAbstractSimple<T> extends TypeAbstractException<T>
 	@Override
 	public String extractErrorMessage(String arg, CommandSender sender, Exception ex)
 	{
-		return Txt.parse("§c\"%s§c\"§c não é um %s valido.", arg, this.getName());
+		return Txt.parse("Â§c\"%sÂ§c\"Â§c nÃ£o Ã© um %s valido.", arg, this.getName());
 	}
 
 }

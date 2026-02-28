@@ -171,14 +171,14 @@ public class RegistryType
 			if (fieldType instanceof Class)
 			{
 				Type<?> type = registry.get(fieldType);
-				if (strictThrow && type == null) throw new IllegalStateException(fieldType + " n„o est· registrado.");
+				if (strictThrow && type == null) throw new IllegalStateException(fieldType + " n√£o est√° registrado.");
 				return type;
 			}
 			
 			throw new IllegalArgumentException("Neither ParameterizedType nor Class: " + fieldType);
 		}
 		
-		throw new IllegalArgumentException("Nenhuma informaÁ„o fornecida.");
+		throw new IllegalArgumentException("Nenhuma informa√ß√£o fornecida.");
 	}
 	
 	public static Type<?> getType(Field field, boolean strictThrow)

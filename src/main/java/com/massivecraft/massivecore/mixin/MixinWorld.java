@@ -119,7 +119,7 @@ public class MixinWorld extends Mixin
 		{
 			if (verbooseChange || verbooseSame)
 			{
-				MixinMessage.get().msgOne(sender, "§cO mundo desconhecido '§c%s' §cé desconhecido.", worldId);
+				MixinMessage.get().msgOne(sender, "Â§cO mundo desconhecido 'Â§c%s' Â§cÃ© desconhecido.", worldId);
 			}
 			return false;
 		}
@@ -135,7 +135,7 @@ public class MixinWorld extends Mixin
 		{
 			if (verbooseSame)
 			{
-				MixinMessage.get().msgOne(sender, "§eA localização do spawn já é §6%s §epara o mundo §e%s§e.", currentFormatted, worldDisplayName);
+				MixinMessage.get().msgOne(sender, "Â§eA localizaÃ§Ã£o do spawn jÃ¡ Ã© Â§6%s Â§epara o mundo Â§e%sÂ§e.", currentFormatted, worldDisplayName);
 			}
 			return true;
 		}
@@ -143,7 +143,7 @@ public class MixinWorld extends Mixin
 		// Report
 		if (verbooseChange)
 		{
-			MixinMessage.get().msgOne(sender, "§eAlterando localização do spawn para §6%s §6%s §6%s§e.", currentFormatted, goalFormatted, worldDisplayName);
+			MixinMessage.get().msgOne(sender, "Â§eAlterando localizaÃ§Ã£o do spawn para Â§6%s Â§6%s Â§6%sÂ§e.", currentFormatted, goalFormatted, worldDisplayName);
 		}
 		
 		// Set it

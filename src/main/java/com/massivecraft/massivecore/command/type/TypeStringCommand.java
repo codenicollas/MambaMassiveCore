@@ -48,7 +48,7 @@ public class TypeStringCommand extends TypeAbstract<String>
 	public String read(String arg, CommandSender sender) throws MassiveException
 	{
 		// Require base command (something at use).
-		if (arg.isEmpty()) throw new MassiveException().addMsg("§cVocê deve, no mínimo, fornecer um comando básico.");
+		if (arg.isEmpty()) throw new MassiveException().addMsg("Â§cVocÃª deve, no mÃ­nimo, fornecer um comando bÃ¡sico.");
 		String[] args = argAsArgs(arg);
 		
 		// Smart management of first slash ...

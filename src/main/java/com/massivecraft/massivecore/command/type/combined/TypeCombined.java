@@ -158,7 +158,7 @@ public abstract class TypeCombined<T> extends TypeAbstract<T>
 		
 		// Fill
 		List<?> parts = this.split(value);
-		if (parts.size() > this.getInnerTypes().size()) throw new RuntimeException("§cMuitas partes!");
+		if (parts.size() > this.getInnerTypes().size()) throw new RuntimeException("Â§cMuitas partes!");
 		for (int i = 0; i < parts.size(); i++)
 		{
 			Type<?> type = this.getInnerType(i);
@@ -391,7 +391,7 @@ public abstract class TypeCombined<T> extends TypeAbstract<T>
 		// Fill
 		List<String> innerArgs = this.getArgs(arg);
 		
-		if (innerArgs.size() > this.getInnerTypes().size()) throw new MassiveException().addMsg("§cMuitos argumentos!");
+		if (innerArgs.size() > this.getInnerTypes().size()) throw new MassiveException().addMsg("Â§cMuitos argumentos!");
 		
 		for (int i = 0; i < innerArgs.size(); i++)
 		{

@@ -88,8 +88,8 @@ public class Parameter<T>
 	public Parameter(T defaultValue, Type<T> type, boolean requiredFromConsole, String name, String defaultDesc)
 	{
 		// Null checks
-		if (type == null) throw new IllegalArgumentException("§co tipo nao deve ser nulo");
-		if (name == null) throw new IllegalArgumentException("§co nome nao deve ser nulo");
+		if (type == null) throw new IllegalArgumentException("Â§co tipo nao deve ser nulo");
+		if (name == null) throw new IllegalArgumentException("Â§co nome nao deve ser nulo");
 		
 		this.setType(type);
 		this.setRequiredFromConsole(requiredFromConsole);

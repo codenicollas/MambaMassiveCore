@@ -72,7 +72,7 @@ public class CommandEditContainerRemove<O, V> extends CommandEditContainerAbstra
 		Object value = entry.getValue();
 		
 		// Validate
-		if (key == null && value == null) throw new MassiveException().addMsg("§cPor favor fornesa chaves ou valores");
+		if (key == null && value == null) throw new MassiveException().addMsg("Â§cPor favor fornesa chaves ou valores");
 		
 		// Alter
 		for (Iterator<?> it = elements.entrySet().iterator(); it.hasNext();)

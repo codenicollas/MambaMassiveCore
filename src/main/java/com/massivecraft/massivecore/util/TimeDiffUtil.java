@@ -86,7 +86,7 @@ public class TimeDiffUtil
 			}
 			catch (Throwable e)
 			{
-				throw new Exception("\""+countString+"\" n„o È um n˙mero v·lido.");
+				throw new Exception("\""+countString+"\" n√£o √© um n√∫mero v√°lido.");
 			}
 			
 			// Parse the time unit
@@ -94,13 +94,13 @@ public class TimeDiffUtil
 			TimeUnit unit = TimeUnit.get(unitString);
 			if (unit == null)
 			{
-				throw new Exception("\""+unitString+"\" n„o È uma unidade de tempo valida.");
+				throw new Exception("\""+unitString+"\" n√£o √© uma unidade de tempo valida.");
 			}
 			
 			// Add to the return map
 			if (ret.put(unit, count) != null)
 			{
-				throw new Exception("Multiple "+unit.singularName+" entradas n„o permitidas.");
+				throw new Exception("Multiple "+unit.singularName+" entradas n√£o permitidas.");
 			}
 		}
 		

@@ -196,12 +196,12 @@ public class EditSettings<O>
 			if (ret != null) return ret;
 			String noun = this.getObjectType().getName();
 			String aan = Txt.aan(noun);
-			throw new MassiveException().addMsg("§cVoce deve selecionar §c%s §c%s para poder ignorar o argumento opcional.", aan, noun);
+			throw new MassiveException().addMsg("Â§cVoce deve selecionar Â§c%s Â§c%s para poder ignorar o argumento opcional.", aan, noun);
 		}
 		if (ALIASES_USED.contains(arg))
 		{
 			O ret = this.getUsed(sender);
-			if (ret == null) throw new MassiveException().addMsg("§cVoce nao possui §c%s§c selecionado.", this.getObjectType().getName() );
+			if (ret == null) throw new MassiveException().addMsg("Â§cVoce nao possui Â§c%sÂ§c selecionado.", this.getObjectType().getName() );
 			return ret;
 		}
 		

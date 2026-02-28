@@ -27,7 +27,7 @@ public class MassiveCommandHelp extends MassiveCommand
         this.addParameter(Parameter.getPage());
         
         // Other
-        this.setDesc("§6 ?,ajuda §e[página] §8-§7 Abre o menu de ajuda.");
+        this.setDesc("Â§6 ?,ajuda Â§e[pÃ¡gina] Â§8-Â§7 Abre o menu de ajuda.");
     }
     
     // -------------------------------------------- //
@@ -58,7 +58,7 @@ public class MassiveCommandHelp extends MassiveCommand
         }
         
         // Send Lines
-        message(Txt.getPage(lines, page, "§eAjuda do comando \"" + parent.getAliases().get(0) + "\"", this));
+        message(Txt.getPage(lines, page, "Â§eAjuda do comando \"" + parent.getAliases().get(0) + "\"", this));
     }
     
     @Override

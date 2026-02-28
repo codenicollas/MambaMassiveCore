@@ -62,7 +62,7 @@ public class RequirementEditorPropertyCreated extends RequirementAbstract
 		CommandEditAbstract<?, ?> commandEditor = (CommandEditAbstract<?, ?>)command;
 		
 		Property<?, ?> property = commandEditor.getProperty();
-		return Txt.parse("§cVocê deve " + (this.isCreatedTarget() ? "criar" : "deletar") + " " + (property != null ? property.getName() : "a propriedade")  + " antes de você fazer isso.");
+		return Txt.parse("Â§cVocÃª deve " + (this.isCreatedTarget() ? "criar" : "deletar") + " " + (property != null ? property.getName() : "a propriedade")  + " antes de vocÃª fazer isso.");
 	}
 	
 }

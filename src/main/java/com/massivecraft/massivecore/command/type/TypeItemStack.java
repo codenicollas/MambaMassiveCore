@@ -75,14 +75,14 @@ public class TypeItemStack extends TypeAbstract<ItemStack>
 	@Override
 	public ItemStack read(String arg, CommandSender sender) throws MassiveException
 	{
-		if ( ! (sender instanceof Player)) throw new MassiveException().addMsg("§cVoce deve ser um player para poder segurar um item na mao.");
+		if ( ! (sender instanceof Player)) throw new MassiveException().addMsg("Â§cVoce deve ser um player para poder segurar um item na mao.");
 		Player player = (Player)sender;
 		
 		ItemStack ret = InventoryUtil.getWeapon(player);
-		if (InventoryUtil.isNothing(ret)) throw new MassiveException().addMsg("§cPara fazer isso você deve segurar um item na mão.");
+		if (InventoryUtil.isNothing(ret)) throw new MassiveException().addMsg("Â§cPara fazer isso vocÃª deve segurar um item na mÃ£o.");
 		
 		Material material = ret.getType();
-		if ( ! this.materialsAllowed.contains(material)) throw new MassiveException().addMsg("§c%s §cnão é permitido", Txt.getNicedEnum(material));
+		if ( ! this.materialsAllowed.contains(material)) throw new MassiveException().addMsg("Â§c%s Â§cnÃ£o Ã© permitido", Txt.getNicedEnum(material));
 		
 		ret = new ItemStack(ret);
 		return ret;

@@ -54,8 +54,8 @@ public class Txt
 	public static final long millisPerYear = 365 * millisPerDay;
 	
 	public static final Set<String> vowel = MUtil.set(
-		"A", "E", "I", "O", "U", "Y", "Å", "Ä", "Ö", "Æ", "Ø",
-		"a", "e", "i", "o", "u", "y", "å", "ä", "ö", "æ", "ø"
+		"A", "E", "I", "O", "U", "Y", "Ã", "Ã", "Ã", "Ã", "Ã",
+		"a", "e", "i", "o", "u", "y", "Ã¥", "Ã¤", "Ã¶", "Ã¦", "Ã¸"
 	); 
 	
 	public static final Map<String, Long> unitMillis = MUtil.map(
@@ -131,13 +131,13 @@ public class Txt
 		parseReplacements.put("<p>", "\u00A73");
 		parseReplacements.put("<parameter>", "\u00A73");
 		parseReplacements.put("&&", "&");
-		parseReplacements.put("§§", "§");
+		parseReplacements.put("Â§Â§", "Â§");
 		
 		// Color by number/char
 		for (int i = 48; i <= 122; i++)
 		{
 			char c = (char)i;
-			parseReplacements.put("§"+c, "\u00A7"+c);
+			parseReplacements.put("Â§"+c, "\u00A7"+c);
 			parseReplacements.put("&"+c, "\u00A7"+c);
 			if (i == 57) i = 96;
 		}
@@ -406,7 +406,7 @@ public class Txt
 	// -------------------------------------------- //
 	// This method never returns null
 	
-	public static final String START_COLORS_REGEX = "^((?:§.)+).*$";
+	public static final String START_COLORS_REGEX = "^((?:Â§.)+).*$";
 	public static final Pattern START_COLORS_PATTERN = Pattern.compile(START_COLORS_REGEX);
 	
 	public static String getStartColors(String string)
@@ -506,7 +506,7 @@ public class Txt
 	
 	public static Mson getMessageEmpty()
 	{
-		return mson("Desculpe, n�o h� p�ginas dispon�veis.").color(ChatColor.YELLOW);
+		return mson("Desculpe, não há páginas disponíveis.").color(ChatColor.YELLOW);
 	}
 	
 	public static Mson getMessageInvalid(int size)
@@ -517,11 +517,11 @@ public class Txt
 		}
 		else if (size == 1)
 		{
-			return mson("H� apenas uma p�gina dispon�vel.").color(ChatColor.RED);
+			return mson("Há apenas uma página disponível.").color(ChatColor.RED);
 		}
 		else
 		{
-			return Mson.format("O n�mero p�gina deve estar 1 e %d.", size).color(ChatColor.RED);
+			return Mson.format("O número página deve estar 1 e %d.", size).color(ChatColor.RED);
 		}
 	}
 	

@@ -37,7 +37,7 @@ public class RequirementIsntCertainSender extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return Txt.parse("§cO player não pode ser §c%s§c.", MixinDisplayName.get().getDisplayName(this.getSenderId(), sender));
+		return Txt.parse("Â§cO player nÃ£o pode ser Â§c%sÂ§c.", MixinDisplayName.get().getDisplayName(this.getSenderId(), sender));
 	}
 	
 }

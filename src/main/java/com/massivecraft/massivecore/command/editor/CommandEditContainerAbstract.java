@@ -64,7 +64,7 @@ public abstract class CommandEditContainerAbstract<O, V> extends CommandEditAbst
 		}
 		catch (Throwable e)
 		{
-			throw new MassiveException().addMsg("§c%s", e.getMessage());
+			throw new MassiveException().addMsg("Â§c%s", e.getMessage());
 		}
 		
 		// After
@@ -155,7 +155,7 @@ public abstract class CommandEditContainerAbstract<O, V> extends CommandEditAbst
 	
 	public void alterElements(List<Object> elements) throws MassiveException
 	{
-		throw new MassiveException().addMsg("§cAinda nao implementado.");
+		throw new MassiveException().addMsg("Â§cAinda nao implementado.");
 	}
 	
 	// -------------------------------------------- //

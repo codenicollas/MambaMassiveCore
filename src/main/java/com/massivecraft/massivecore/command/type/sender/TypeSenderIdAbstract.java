@@ -193,7 +193,7 @@ public abstract class TypeSenderIdAbstract<T> extends TypeAbstract<T>
 
 	public String getErrorMessageForArg(String arg)
 	{
-		return Txt.parse("§cO argumento \"§c%s\" §cfoi invalido para este comando.", this.getName(), arg);
+		return Txt.parse("Â§cO argumento \"Â§c%s\" Â§cfoi invalido para este comando.", this.getName(), arg);
 	}
 	
 	public String getSenderIdFor(String arg)

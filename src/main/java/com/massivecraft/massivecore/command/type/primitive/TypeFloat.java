@@ -19,7 +19,7 @@ public class TypeFloat extends TypeAbstractNumber<Float>
 	@Override
 	public String getName()
 	{
-		return "número com decimais";
+		return "nÃºmero com decimais";
 	}
 	
 	@Override

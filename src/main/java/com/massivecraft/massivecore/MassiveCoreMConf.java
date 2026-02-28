@@ -56,11 +56,11 @@ public class MassiveCoreMConf extends Entity<MassiveCoreMConf>
 	// Permission denied formatting.
 	
 	public Map<String, String> permissionDeniedFormats = MUtil.map(
-		"some.awesome.permission.node", "�cVoc� n�o tem permiss�o para fazer isso.",
+		"some.awesome.permission.node", "ï¿½cVocï¿½ nï¿½o tem permissï¿½o para fazer isso.",
 		"some.derp.permission.node.1", "derp",
 		"some.derp.permission.node.2", "derp",
 		"some.derp.permission.node.3", "derp",
-		"derp", "�cVoc� n�o tem permiss�o para fazer isso."
+		"derp", "ï¿½cVocï¿½ nï¿½o tem permissï¿½o para fazer isso."
 	);
 	
 	public String getPermissionDeniedFormat(String permissionName)

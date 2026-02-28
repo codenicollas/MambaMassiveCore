@@ -51,18 +51,18 @@ public abstract class TypeNameAbstract extends TypeAbstract<String>
 		String current = this.getCurrentName(sender);
 		if (current != null && current.equalsIgnoreCase(arg) && this.isLenient()) return arg;
 
-		if (this.isNameTaken(arg)) throw new MassiveException().addMsg("§cO nome \"§c%s\"§c já está em uso.",arg);
+		if (this.isNameTaken(arg)) throw new MassiveException().addMsg("Â§cO nome \"Â§c%s\"Â§c jÃ¡ estÃ¡ em uso.",arg);
 		
 		Integer lengthMin = this.getLengthMin();
 		if (lengthMin != null && arg.length() < lengthMin)
 		{
-			throw new MassiveException().addMsg("§cO nome da facção deve conter no minímo %d caracteres.", lengthMin);
+			throw new MassiveException().addMsg("Â§cO nome da facÃ§Ã£o deve conter no minÃ­mo %d caracteres.", lengthMin);
 		}
 		
 		Integer lengthMax = this.getLengthMax();
 		if (lengthMax != null && arg.length() >lengthMax)
 		{
-			throw new MassiveException().addMsg("§cO nome da facção deve conter no máximo %d caracteres.", lengthMax);
+			throw new MassiveException().addMsg("Â§cO nome da facÃ§Ã£o deve conter no mÃ¡ximo %d caracteres.", lengthMax);
 		}
 		
 		Set<Character> disallowed = new MassiveSet<>();
@@ -75,8 +75,8 @@ public abstract class TypeNameAbstract extends TypeAbstract<String>
 		if (!disallowed.isEmpty())
 		{
 			String characterViolations = Txt.implode(disallowed, "");
-			String pluralityResolution = disallowed.size() == 1 ? "§cO seguinte caracter não é permitido" : "Os seguintes caracteres não são permitidos";
-			throw new MassiveException().addMsg("§c%s: §e%s§c.", pluralityResolution, characterViolations);
+			String pluralityResolution = disallowed.size() == 1 ? "Â§cO seguinte caracter nÃ£o Ã© permitido" : "Os seguintes caracteres nÃ£o sÃ£o permitidos";
+			throw new MassiveException().addMsg("Â§c%s: Â§e%sÂ§c.", pluralityResolution, characterViolations);
 		}
 		
 		return arg;

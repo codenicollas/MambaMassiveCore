@@ -64,7 +64,7 @@ public class MixinTeleport extends Mixin
 		}
 		catch (Throwable e)
 		{
-			throw new TeleporterException(Txt.parse("§cNão foi possivel calcular a localização:§c %s", e.getMessage()));
+			throw new TeleporterException(Txt.parse("Â§cNÃ£o foi possivel calcular a localizaÃ§Ã£o:Â§c %s", e.getMessage()));
 		}
 		
 		// eject passengers and unmount before transport
@@ -97,7 +97,7 @@ public class MixinTeleport extends Mixin
 	public void teleport(Object teleporteeObject, Destination destination, int delaySeconds) throws TeleporterException
 	{
 		String teleporteeId = IdUtil.getId(teleporteeObject);
-		if (!IdUtil.isPlayerId(teleporteeId)) throw new TeleporterException(Txt.parse("§c%s não é um player.", MixinDisplayName.get().getDisplayName(teleporteeId, IdUtil.getConsole())));
+		if (!IdUtil.isPlayerId(teleporteeId)) throw new TeleporterException(Txt.parse("Â§c%s nÃ£o Ã© um player.", MixinDisplayName.get().getDisplayName(teleporteeId, IdUtil.getConsole())));
 		
 		PS ps;
 		try
@@ -115,11 +115,11 @@ public class MixinTeleport extends Mixin
 			// With delay
 			if (desc != null && ! desc.isEmpty())
 			{
-				MixinMessage.get().msgOne(teleporteeId, "§eTeleportando para §e"+ desc + "§e em §e"+delaySeconds+"§es. Não se mova!");
+				MixinMessage.get().msgOne(teleporteeId, "Â§eTeleportando para Â§e"+ desc + "Â§e em Â§e"+delaySeconds+"Â§es. NÃ£o se mova!");
 			}
 			else
 			{
-				MixinMessage.get().msgOne(teleporteeId, "§eIniciando teleporte em §e"+delaySeconds+" segundos§e. Não se mova!");
+				MixinMessage.get().msgOne(teleporteeId, "Â§eIniciando teleporte em Â§e"+delaySeconds+" segundosÂ§e. NÃ£o se mova!");
 			}
 			
 			new ScheduledTeleport(teleporteeId, destination, delaySeconds).schedule();
@@ -137,7 +137,7 @@ public class MixinTeleport extends Mixin
 			
 			if (desc != null && ! desc.isEmpty())
 			{
-				MixinMessage.get().msgOne(teleporteeId, "§eTeleportado com sucesso para "+desc+"§e.");
+				MixinMessage.get().msgOne(teleporteeId, "Â§eTeleportado com sucesso para "+desc+"Â§e.");
 			}
 			
 			Player teleportee = IdUtil.getPlayer(teleporteeId);

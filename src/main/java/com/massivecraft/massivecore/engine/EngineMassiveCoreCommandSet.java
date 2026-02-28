@@ -64,19 +64,19 @@ public class EngineMassiveCoreCommandSet extends Engine
 		// NoChange
 		if (after == before)
 		{
-			throw new MassiveException().addMsg("%s<i> j· est· <gold>%s<i>.", targetDesc, afterDesc);
+			throw new MassiveException().addMsg("%s<i> j√° est√° <gold>%s<i>.", targetDesc, afterDesc);
 		}
 		
 		// Apply
 		playerValue.setValue(after, player);
 		
 		// Inform
-		MixinMessage.get().msgOne(senderId, "%s<i> agora È <gold>%s<i>.", targetDesc, afterDesc);
+		MixinMessage.get().msgOne(senderId, "%s<i> agora √© <gold>%s<i>.", targetDesc, afterDesc);
 		
 		// Inform target
 		if (!targetId.equals(senderId))
 		{
-			MixinMessage.get().msgOne(targetId, "%s<i> agora È <gold>%s<i>.", getTargetDesc(targetId, targetId, name), afterDesc);
+			MixinMessage.get().msgOne(targetId, "%s<i> agora √© <gold>%s<i>.", getTargetDesc(targetId, targetId, name), afterDesc);
 		}
 	}
 	

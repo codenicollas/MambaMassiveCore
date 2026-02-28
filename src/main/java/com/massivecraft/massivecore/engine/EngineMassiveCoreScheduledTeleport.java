@@ -100,7 +100,7 @@ public class EngineMassiveCoreScheduledTeleport extends Engine
 		scheduledTeleport.unschedule();
 		
 		// ... and inform the teleportee.
-		MixinMessage.get().msgOne(scheduledTeleport.getTeleporteeId(), "§cTeleporte cancelado!");
+		MixinMessage.get().msgOne(scheduledTeleport.getTeleporteeId(), "Â§cTeleporte cancelado!");
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

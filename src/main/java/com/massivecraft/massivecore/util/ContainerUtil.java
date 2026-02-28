@@ -127,7 +127,7 @@ public class ContainerUtil
 			return map.isEmpty();
 		}
 		
-		throw new IllegalArgumentException(container.getClass().getName() + " n„o È um container.");
+		throw new IllegalArgumentException(container.getClass().getName() + " n√£o √© um container.");
 	}
 	
 	public static int size(Object container)
@@ -146,7 +146,7 @@ public class ContainerUtil
 			return map.size();
 		}
 		
-		throw new IllegalArgumentException(container.getClass().getName() + " n„o È um container.");
+		throw new IllegalArgumentException(container.getClass().getName() + " n√£o √© um container.");
 	}
 	
 	// -------------------------------------------- //
@@ -170,7 +170,7 @@ public class ContainerUtil
 			return (Collection<E>) map.entrySet();
 		}
 		
-		throw new IllegalArgumentException(container.getClass().getName() + " n„o È um container.");
+		throw new IllegalArgumentException(container.getClass().getName() + " n√£o √© um container.");
 	}
 	
 	// -------------------------------------------- //
@@ -195,7 +195,7 @@ public class ContainerUtil
 			return;
 		}
 		
-		throw new IllegalArgumentException(container.getClass().getName() + " n„o È um container.");
+		throw new IllegalArgumentException(container.getClass().getName() + " n√£o √© um container.");
 	}
 	
 	public static void setElements(Object container, Iterable<?> elements)
@@ -225,7 +225,7 @@ public class ContainerUtil
 			return ! MUtil.equals(after, before);
 		}
 		
-		throw new IllegalArgumentException(container.getClass().getName() + " n„o È um container.");
+		throw new IllegalArgumentException(container.getClass().getName() + " n√£o √© um container.");
 	}
 	
 	public static void addElements(Object container, Iterable<?> elements)

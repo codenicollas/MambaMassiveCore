@@ -43,19 +43,19 @@ public class MassiveCoreMSponsorInfo extends Entity<MassiveCoreMSponsorInfo>
     
     public List<String> consoleMsgs = new MassiveList<>(
         "",
-        "<pink>____----====[ <aqua>Anúncio by MassiveCore<pink> ]====----____",
-        "§aEsta versão do MassiveCore foi totalmente adaptada por RUSHyoutuber.",
+        "<pink>____----====[ <aqua>AnÃºncio by MassiveCore<pink> ]====----____",
+        "Â§aEsta versÃ£o do MassiveCore foi totalmente adaptada por RUSHyoutuber.",
         "",
-        "§eReporte qualquer tipo de BUG através dos meios de comunicação:",
+        "Â§eReporte qualquer tipo de BUG atravÃ©s dos meios de comunicaÃ§Ã£o:",
         "",
-        "§bSkype:§f live:eduardo-mior.",
-        "§9Facebook:§f www.fb.com/eduardo.mior.3",
-        "§3TeamSpeak:§f rush.ts3elite.com",
-        "§bTwiiter:§f @CanalDaRUSH",
-        "§aWhatsApp:§f (54) 91343192",
-        "§cE-Mail:§f 172422@upf.br",
+        "Â§bSkype:Â§f live:eduardo-mior.",
+        "Â§9Facebook:Â§f www.fb.com/eduardo.mior.3",
+        "Â§3TeamSpeak:Â§f rush.ts3elite.com",
+        "Â§bTwiiter:Â§f @CanalDaRUSH",
+        "Â§aWhatsApp:Â§f (54) 91343192",
+        "Â§cE-Mail:Â§f 172422@upf.br",
         "",
-        "§iVocê pode desativar esta mensagem acessando na config do plugin.",
+        "Â§iVocÃª pode desativar esta mensagem acessando na config do plugin.",
         "" // NOTE: an empty line like this makes sense in console but not for players.
     );
     
@@ -69,19 +69,19 @@ public class MassiveCoreMSponsorInfo extends Entity<MassiveCoreMSponsorInfo>
     
     public List<String> ingameMsgs = new MassiveList<>(
         "",
-        "<pink>____----====[ <aqua>Anúncio by MassiveCore<pink> ]====----____",
-        "§aEsta versão do MassiveCore foi totalmente adaptada por RUSHyoutuber.",
+        "<pink>____----====[ <aqua>AnÃºncio by MassiveCore<pink> ]====----____",
+        "Â§aEsta versÃ£o do MassiveCore foi totalmente adaptada por RUSHyoutuber.",
         "",
-        "§eReporte qualquer tipo de BUG através dos meios de comunicação:",
+        "Â§eReporte qualquer tipo de BUG atravÃ©s dos meios de comunicaÃ§Ã£o:",
         "",
-        "§bSkype:§f live:eduardo-mior.",
-        "§9Facebook:§f www.fb.com/eduardo.mior.3",
-        "§3TeamSpeak:§f rush.ts3elite.com",
-        "§bTwiiter:§f @CanalDaRUSH",
-        "§aWhatsApp:§f (54) 91343192",
-        "§cE-Mail:§f 172422@upf.br",
+        "Â§bSkype:Â§f live:eduardo-mior.",
+        "Â§9Facebook:Â§f www.fb.com/eduardo.mior.3",
+        "Â§3TeamSpeak:Â§f rush.ts3elite.com",
+        "Â§bTwiiter:Â§f @CanalDaRUSH",
+        "Â§aWhatsApp:Â§f (54) 91343192",
+        "Â§cE-Mail:Â§f 172422@upf.br",
         "",
-        "§iVocê pode desativar esta mensagem acessando na config do plugin."
+        "Â§iVocÃª pode desativar esta mensagem acessando na config do plugin."
     );
     
     public List<SoundEffect> ingameSoundEffects = new MassiveList<>(

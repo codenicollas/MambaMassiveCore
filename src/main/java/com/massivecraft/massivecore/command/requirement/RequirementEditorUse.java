@@ -31,13 +31,13 @@ public class RequirementEditorUse extends RequirementAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		if ( ! (command instanceof CommandEditAbstract)) return Txt.parse("§cEste não é um editor.");
+		if ( ! (command instanceof CommandEditAbstract)) return Txt.parse("Â§cEste nÃ£o Ã© um editor.");
 		CommandEditAbstract<?, ?> commandEditor = (CommandEditAbstract<?, ?>)command;
 		
 		String noun = commandEditor.getSettings().getObjectType().getName();
 		String aan = Txt.aan(noun);
 		
-		return Txt.parse("§cVocê deve usar §c%s §c%s§c para edita-lo", aan, noun);
+		return Txt.parse("Â§cVocÃª deve usar Â§c%s Â§c%sÂ§c para edita-lo", aan, noun);
 	}
 	
 }

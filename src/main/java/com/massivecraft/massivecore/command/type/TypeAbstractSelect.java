@@ -64,7 +64,7 @@ public abstract class TypeAbstractSelect<T> extends TypeAbstract<T> implements A
 	public MassiveException createExceptionForInvalidArg(String arg, CommandSender sender)
 	{
 		MassiveException ret = new MassiveException();
-		ret.addMsg("§cO argumento \"§c%s§c\" foi invalido para este comando.", this.getName(), arg);
+		ret.addMsg("Â§cO argumento \"Â§c%sÂ§c\" foi invalido para este comando.", this.getName(), arg);
 		
 		if (this.canList(sender))
 		{			
@@ -75,27 +75,27 @@ public abstract class TypeAbstractSelect<T> extends TypeAbstract<T> implements A
 			
 			if (names.isEmpty())
 			{
-				ret.addMsg("§eNota: Não há nenhum(a) %s disponível.", this.getName());
+				ret.addMsg("Â§eNota: NÃ£o hÃ¡ nenhum(a) %s disponÃ­vel.", this.getName());
 			}
 			else if ( ! matches.isEmpty() && matches.size() <= LIST_COUNT_MAX)
 			{
-				String format = Txt.parse("§6%s");
-				String comma = Txt.parse("§e, ");
-				String and = Txt.parse(" §eou ");
-				String dot = Txt.parse("§e?");
-				ret.addMsg("§eVocê quis dizer %s", Txt.implodeCommaAndDot(matches, format, comma, and, dot));
+				String format = Txt.parse("Â§6%s");
+				String comma = Txt.parse("Â§e, ");
+				String and = Txt.parse(" Â§eou ");
+				String dot = Txt.parse("Â§e?");
+				ret.addMsg("Â§eVocÃª quis dizer %s", Txt.implodeCommaAndDot(matches, format, comma, and, dot));
 			}
 			else if (names.size() > LIST_COUNT_MAX)
 			{
-				ret.addMsg("§eMais de %d sugestões foram encontradas.", LIST_COUNT_MAX);
+				ret.addMsg("Â§eMais de %d sugestÃµes foram encontradas.", LIST_COUNT_MAX);
 			}
 			else
 			{
-				String format = Txt.parse("§6%s");
-				String comma = Txt.parse("§e, ");
-				String and = Txt.parse(" §eou ");
-				String dot = Txt.parse("§e.");
-				ret.addMsg("§eUse %s", Txt.implodeCommaAndDot(names, format, comma, and, dot));
+				String format = Txt.parse("Â§6%s");
+				String comma = Txt.parse("Â§e, ");
+				String and = Txt.parse(" Â§eou ");
+				String dot = Txt.parse("Â§e.");
+				ret.addMsg("Â§eUse %s", Txt.implodeCommaAndDot(names, format, comma, and, dot));
 			}
 		}
 		return ret;

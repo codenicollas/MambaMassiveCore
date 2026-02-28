@@ -32,7 +32,7 @@ public class TypeMillisDiff extends TypeAbstractException<Long>
 	@Override
 	public String getVisualInner(Long value, CommandSender sender)
 	{
-		String prefix = Txt.parse(value < 0 ? "§cnegativo " : "");
+		String prefix = Txt.parse(value < 0 ? "Â§cnegativo " : "");
 		LinkedHashMap<TimeUnit, Long> unitcounts = TimeDiffUtil.unitcounts(value);
 		return prefix + TimeDiffUtil.formatedVerboose(unitcounts);
 	}

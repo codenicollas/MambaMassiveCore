@@ -1,6 +1,6 @@
 main: com.massivecraft.massivecore.MassiveCore
 name: MassiveCore
-version: ${project.version}
+version: ${version}
 website: https://www.massivecraft.com/massivecore
 description: §eEsta versão do plugin MassiveCore é gratuita e livre para todos. Esta edição do plugin foi feita por §bRUSHyoutuber§e e seus colaboradores.
 authors: [Cayorion]

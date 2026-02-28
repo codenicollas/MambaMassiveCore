@@ -38,7 +38,7 @@ public abstract class EntityContainerAbstract<E extends EntityInternal<E>> imple
 	public String fixIdOrThrow(Object oid) throws IllegalArgumentException
 	{
 		String ret = this.fixId(oid);
-		if (ret == null) throw new IllegalArgumentException(String.valueOf(oid) + " n„o È um id valido.");
+		if (ret == null) throw new IllegalArgumentException(String.valueOf(oid) + " n√£o √© um id valido.");
 		return ret;
 	}
 	

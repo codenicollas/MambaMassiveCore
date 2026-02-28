@@ -101,19 +101,19 @@ public abstract class MassiveCommandSet<T> extends MassiveCommand
 		// NoChange
 		if (after == before)
 		{
-			throw new MassiveException().addMsg("%s<i> j· est· <h>%s<i>.", targetDesc, afterDesc);
+			throw new MassiveException().addMsg("%s<i> j√° est√° <h>%s<i>.", targetDesc, afterDesc);
 		}
 		
 		// Apply
 		this.setValue(after, targetId);
 		
 		// Inform
-		msg("%s<i> È gora <h>%s<i>.", targetDesc, afterDesc);
+		msg("%s<i> √© gora <h>%s<i>.", targetDesc, afterDesc);
 
 		// Inform target
 		if (!targetId.equals(senderId))
 		{
-			MixinMessage.get().msgOne(targetId, "%s<i> È agora <h>%s<i>.", getTargetDesc(targetId, targetId), afterDesc);
+			MixinMessage.get().msgOne(targetId, "%s<i> √© agora <h>%s<i>.", getTargetDesc(targetId, targetId), afterDesc);
 		}
 	}
 

@@ -19,7 +19,7 @@ public class TypeShort extends TypeAbstractNumber<Short>
 	@Override
 	public String getName()
 	{
-		return "número";
+		return "nÃºmero";
 	}
 
 	@Override

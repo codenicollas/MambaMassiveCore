@@ -19,7 +19,7 @@ public class TypeDouble extends TypeAbstractNumber<Double>
 	@Override
 	public String getName()
 	{
-		return "número com decimais";
+		return "nÃºmero com decimais";
 	}
 	
 	@Override

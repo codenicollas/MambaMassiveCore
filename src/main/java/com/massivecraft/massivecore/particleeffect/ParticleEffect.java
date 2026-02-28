@@ -559,13 +559,13 @@ public enum ParticleEffect {
 	 */
 	public void display(float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, double range) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito de particulas requer dados adicionais");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_WATER) && !isWater(center)) {
-			throw new IllegalArgumentException("N„o h· ·gua no local do centro");
+			throw new IllegalArgumentException("N√£o h√° √°gua no local do centro");
 		}
 		new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, range > 256, null).sendTo(center, range);
 	}
@@ -588,13 +588,13 @@ public enum ParticleEffect {
 	 */
 	public void display(float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito de particulas requer dados adicionais");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_WATER) && !isWater(center)) {
-			throw new IllegalArgumentException("N„o h· ·gua no local do centro");
+			throw new IllegalArgumentException("N√£o h√° √°gua no local do centro");
 		}
 		new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, isLongDistance(center, players), null).sendTo(center, players);
 	}
@@ -633,16 +633,16 @@ public enum ParticleEffect {
 	 */
 	public void display(Vector direction, float speed, Location center, double range) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito de particulas requer dados adicionais");
 		}
 		if (!hasProperty(ParticleProperty.DIRECTIONAL)) {
-			throw new IllegalArgumentException("Este efeito de partÌculas n„o È direcional");
+			throw new IllegalArgumentException("Este efeito de part√≠culas n√£o √© direcional");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_WATER) && !isWater(center)) {
-			throw new IllegalArgumentException("N„o h· ·gua no local do centro");
+			throw new IllegalArgumentException("N√£o h√° √°gua no local do centro");
 		}
 		new ParticlePacket(this, direction, speed, range > 256, null).sendTo(center, range);
 	}
@@ -662,16 +662,16 @@ public enum ParticleEffect {
 	 */
 	public void display(Vector direction, float speed, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito de particulas requer dados adicionais");
 		}
 		if (!hasProperty(ParticleProperty.DIRECTIONAL)) {
-			throw new IllegalArgumentException("Este efeito de partÌculas n„o È direcional");
+			throw new IllegalArgumentException("Este efeito de part√≠culas n√£o √© direcional");
 		}
 		if (hasProperty(ParticleProperty.REQUIRES_WATER) && !isWater(center)) {
-			throw new IllegalArgumentException("N„o h· ·gua no local do centro");
+			throw new IllegalArgumentException("N√£o h√° √°gua no local do centro");
 		}
 		new ParticlePacket(this, direction, speed, isLongDistance(center, players), null).sendTo(center, players);
 	}
@@ -705,7 +705,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleColor color, Location center, double range) throws ParticleVersionException, ParticleColorException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.COLORABLE)) {
 			throw new ParticleColorException("Este efeito de particulas nao suporta cores");
@@ -729,7 +729,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleColor color, Location center, List<Player> players) throws ParticleVersionException, ParticleColorException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.COLORABLE)) {
 			throw new ParticleColorException("Este efeito de particulas nao suporta cores");
@@ -772,7 +772,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleData data, float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, double range) throws ParticleVersionException, ParticleDataException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito da particulas nao requerem dados adicionais");
@@ -801,7 +801,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleData data, float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito da particulas nao requerem dados adicionais");
@@ -846,7 +846,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleData data, Vector direction, float speed, Location center, double range) throws ParticleVersionException, ParticleDataException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito da particulas nao requerem dados adicionais");
@@ -872,7 +872,7 @@ public enum ParticleEffect {
 	 */
 	public void display(ParticleData data, Vector direction, float speed, Location center, List<Player> players) throws ParticleVersionException, ParticleDataException {
 		if (!isSupported()) {
-			throw new ParticleVersionException("Este efeito de partÌculas n„o È suportado pela vers„o do seu servidor");
+			throw new ParticleVersionException("Este efeito de part√≠culas n√£o √© suportado pela vers√£o do seu servidor");
 		}
 		if (!hasProperty(ParticleProperty.REQUIRES_DATA)) {
 			throw new ParticleDataException("Este efeito da particulas nao requerem dados adicionais");
@@ -1024,13 +1024,13 @@ public enum ParticleEffect {
 		 * 
 		 * @param material Material of the block
 		 * @param data Data value of the block
-		 * @throws IllegalArgumentException If the material n„o È um block
+		 * @throws IllegalArgumentException If the material n√£o √© um block
 		 * @see ParticleData#ParticleData(Material, byte)
 		 */
 		public BlockData(Material material, byte data) throws IllegalArgumentException {
 			super(material, data);
 			if (!material.isBlock()) {
-				throw new IllegalArgumentException("O material n„o È um bloco");
+				throw new IllegalArgumentException("O material n√£o √© um bloco");
 			}
 		}
 	}

@@ -19,7 +19,7 @@ public class TypeLong extends TypeAbstractNumber<Long>
 	@Override
 	public String getName()
 	{
-		return "número";
+		return "nÃºmero";
 	}
 
 	@Override

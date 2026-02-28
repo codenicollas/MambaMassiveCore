@@ -56,7 +56,7 @@ public class EngineMassiveCoreChestGui extends Engine
 			}
 			else
 			{
-				MixinMessage.get().msgOne(event.getWhoClicked(), "§cFeche o menu para poder mexer nos seus itens.");
+				MixinMessage.get().msgOne(event.getWhoClicked(), "Â§cFeche o menu para poder mexer nos seus itens.");
 			}
 			
 			return;

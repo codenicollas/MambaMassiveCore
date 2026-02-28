@@ -812,7 +812,7 @@ public class MUtil
 			case ITALIC: return 0x14;
 			case RESET: return 0x15;
 		}
-		throw new IllegalArgumentException("A cor de chat " + chatColor.name() + " ainda n„o È suportada!");
+		throw new IllegalArgumentException("A cor de chat " + chatColor.name() + " ainda n√£o √© suportada!");
 	}
 	
 	public static ChatColor getChatColor(int chatColorCode)
@@ -842,7 +842,7 @@ public class MUtil
 			case 0x14: return ChatColor.ITALIC;
 			case 0x15: return ChatColor.RESET;
 		}
-		throw new IllegalArgumentException("O codigo de chat " + chatColorCode + " ainda n„o È suportado!");
+		throw new IllegalArgumentException("O codigo de chat " + chatColorCode + " ainda n√£o √© suportado!");
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -869,7 +869,7 @@ public class MUtil
 			case 0xE: return ChatColor.RED;
 			case 0xF: return ChatColor.BLACK;
 		}
-		throw new IllegalArgumentException("A cor de corante " + dyeColor + " ainda n„o È suportada!");
+		throw new IllegalArgumentException("A cor de corante " + dyeColor + " ainda n√£o √© suportada!");
 	}
 
 	// -------------------------------------------- //

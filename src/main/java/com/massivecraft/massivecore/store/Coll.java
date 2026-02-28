@@ -292,7 +292,7 @@ public class Coll<E extends Entity<E>> extends CollAbstract<E>
 		int version = MigratorUtil.getVersion(raw);
 		if (version > this.getEntityTargetVersion())
 		{
-			logLoadError(id, String.format("�o � poss�vel carregar a entidade da vers�o %d", version));
+			logLoadError(id, String.format("ï¿½o ï¿½ possï¿½vel carregar a entidade da versï¿½o %d", version));
 			return;
 		}
 

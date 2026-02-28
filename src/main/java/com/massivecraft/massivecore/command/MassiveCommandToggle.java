@@ -74,7 +74,7 @@ public abstract class MassiveCommandToggle extends MassiveCommand
 		// NoChange
 		if (after == before)
 		{
-			String message = Txt.parse("§e%s§e já está <h>%s§e.", this.getName(), afterDesc);
+			String message = Txt.parse("Â§e%sÂ§e jÃ¡ estÃ¡ <h>%sÂ§e.", this.getName(), afterDesc);
 			if (after) message += this.getInfoSuffix();
 			message(message);
 			return;
@@ -84,7 +84,7 @@ public abstract class MassiveCommandToggle extends MassiveCommand
 		this.setValue(after);
 		
 		// Inform
-		String message = Txt.parse("§e%s§e é agora <h>%s§e.", this.getName(), afterDesc);
+		String message = Txt.parse("Â§e%sÂ§e Ã© agora <h>%sÂ§e.", this.getName(), afterDesc);
 		if (after) message += this.getInfoSuffix();
 		message(message);
 	}

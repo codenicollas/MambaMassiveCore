@@ -37,8 +37,8 @@ public class MassiveCommandDeprecated extends MassiveCommand
     @Override
     public void perform()
     {   
-        msg("§eComando não encontrado.");
-        msg("§eUse §6/f§e para abrir o menu de ajuda.");
+        msg("Â§eComando nÃ£o encontrado.");
+        msg("Â§eUse Â§6/fÂ§e para abrir o menu de ajuda.");
     }
     
 }
